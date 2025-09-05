@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css'
 import reactLogo from './assets/react.svg';
+import ProjectCover from './components/ProjectCover';
 
 function ParticleSystem() {
   const particlesRef = useRef(null);
@@ -257,6 +258,8 @@ const translations = {
 };
 
 function App() {
+  /** @type {[boolean, Function]} */
+  const [showCover, setShowCover] = useState(true);
   /** @type {['EN' | 'RU', Function]} */
   const [lang, setLang] = useState('EN');
   /** @type {['home' | 'html-elements' | 'interactive-components', Function]} */
@@ -276,6 +279,15 @@ function App() {
     setPopupVisible(false);
     setPopupContent('');
   };
+
+  const handleEnterApp = () => {
+    setShowCover(false);
+  };
+
+  // Show project cover first
+  if (showCover) {
+    return <ProjectCover onEnter={handleEnterApp} />;
+  }
 
   return (
     <>

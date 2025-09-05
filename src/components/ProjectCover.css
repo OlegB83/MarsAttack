@@ -1,0 +1,663 @@
+/* Project Cover Styles */
+.project-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: 
+    radial-gradient(ellipse at center top, rgba(139, 0, 0, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at center bottom, rgba(25, 25, 112, 0.3) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #1a0000 25%, #000033 75%, #000000 100%);
+  z-index: 10000;
+  overflow: hidden;
+  animation: coverEntrance 2s ease-out;
+}
+
+.project-cover.exiting {
+  animation: coverExit 1s ease-in forwards;
+}
+
+@keyframes coverEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes coverExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+  }
+}
+
+/* Animated Stars Background */
+.animated-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.cover-star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  animation: starTwinkle infinite ease-in-out alternate;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.cover-star:nth-child(3n) {
+  background: #ffff88;
+}
+
+.cover-star:nth-child(5n) {
+  background: #88ffff;
+}
+
+.cover-star:nth-child(7n) {
+  background: #ff8888;
+}
+
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Floating UFOs */
+.floating-ufo {
+  position: absolute;
+  font-size: 4rem;
+  animation: ufoFloat 8s ease-in-out infinite;
+  animation-delay: var(--delay);
+  filter: drop-shadow(0 0 20px #00ffff);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.floating-ufo:hover {
+  transform: scale(1.3) rotate(15deg);
+  filter: drop-shadow(0 0 40px #00ffff) drop-shadow(0 0 60px #ff0066);
+}
+
+@keyframes ufoFloat {
+  0%, 100% {
+    transform: translateX(calc(var(--direction) * -20vw)) translateY(20vh);
+  }
+  25% {
+    transform: translateX(calc(var(--direction) * 30vw)) translateY(10vh) rotate(5deg);
+  }
+  50% {
+    transform: translateX(calc(var(--direction) * 80vw)) translateY(30vh);
+  }
+  75% {
+    transform: translateX(calc(var(--direction) * 120vw)) translateY(15vh) rotate(-5deg);
+  }
+}
+
+/* Animated Planets */
+.animated-planet {
+  position: absolute;
+  border-radius: 50%;
+  animation: planetRotate 20s linear infinite;
+}
+
+.animated-planet.small {
+  width: 60px;
+  height: 60px;
+}
+
+.animated-planet.medium {
+  width: 100px;
+  height: 100px;
+}
+
+.animated-planet.large {
+  width: 150px;
+  height: 150px;
+}
+
+.animated-planet.mars .planet-surface {
+  background: radial-gradient(circle at 30% 30%, #ff6b47, #cc4125, #8b0000);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.animated-planet.earth .planet-surface {
+  background: radial-gradient(circle at 30% 30%, #4a90e2, #357abd, #1e40af);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.animated-planet.saturn .planet-surface {
+  background: radial-gradient(circle at 30% 30%, #ffd700, #daa520, #b8860b);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.planet-glow {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+  animation: planetGlow 3s ease-in-out infinite alternate;
+}
+
+.planet-rings {
+  position: absolute;
+  top: 40%;
+  left: -30%;
+  width: 160%;
+  height: 20%;
+  border: 2px solid rgba(255, 215, 0, 0.6);
+  border-radius: 50%;
+  transform: rotateX(75deg);
+}
+
+@keyframes planetRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes planetGlow {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+/* Martian Characters */
+.martian-character {
+  position: absolute;
+  animation: martianBob 4s ease-in-out infinite;
+}
+
+.martian-head {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 15px #00ff00);
+  animation: martianBlink 3s ease-in-out infinite;
+}
+
+.martian-ray {
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, #ff0000, transparent);
+  margin: 0 auto;
+  animation: rayPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+@keyframes martianBob {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes martianBlink {
+  0%, 90%, 100% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes rayPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.5);
+  }
+}
+
+/* Main Cover Content */
+.cover-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 100;
+  width: 90%;
+  max-width: 800px;
+}
+
+.cover-title-wrapper {
+  margin-bottom: 3rem;
+}
+
+.cover-title {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  color: #ff0000;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin: 0;
+  text-shadow: 
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 40px #ff0000,
+    3px 3px 0px #660000;
+  animation: titlePulse 3s ease-in-out infinite;
+}
+
+/* Glitch Effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.glitch::before {
+  animation: glitch1 2s infinite;
+  color: #00ffff;
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch2 2s infinite;
+  color: #ff00ff;
+  z-index: -2;
+}
+
+@keyframes glitch1 {
+  0%, 14%, 15%, 49%, 50%, 99%, 100% {
+    transform: translate(0px, 0px);
+  }
+  15%, 49% {
+    transform: translate(-2px, 0px);
+  }
+}
+
+@keyframes glitch2 {
+  0%, 20%, 21%, 62%, 63%, 99%, 100% {
+    transform: translate(0px, 0px);
+  }
+  21%, 62% {
+    transform: translate(2px, 0px);
+  }
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: hue-rotate(45deg);
+  }
+}
+
+.title-underline {
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #ff0000, #00ffff, #ff0000, transparent);
+  margin: 1rem auto;
+  animation: underlineSweep 2s ease-in-out infinite;
+  width: 0%;
+}
+
+@keyframes underlineSweep {
+  0%, 100% {
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+}
+
+/* Typewriter Subtitle */
+.cover-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: #00ffff;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  margin-bottom: 3rem;
+  min-height: 3rem;
+}
+
+.typewriter-text {
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px currentColor;
+}
+
+.typewriter-cursor {
+  animation: blink 1s infinite;
+  color: #ffff00;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Enter Button */
+.cover-enter-btn {
+  position: relative;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff0066, #ff3399, #ff0066);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: 50px;
+  padding: 1.5rem 3rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  overflow: hidden;
+  box-shadow: 
+    0 0 30px rgba(255, 0, 102, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: btnEntrance 0.8s ease-out, btnGradient 3s ease-in-out infinite;
+}
+
+.cover-enter-btn:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 
+    0 0 50px rgba(255, 0, 102, 0.8),
+    0 15px 40px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ff3399, #ff0066, #ff3399);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-icon {
+  margin-left: 0.5rem;
+  display: inline-block;
+  animation: rocketBob 2s ease-in-out infinite;
+}
+
+.btn-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  animation: btnGlowRotate 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes btnEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes btnGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes btnGlowRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rocketBob {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Credits */
+.cover-credits {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.cover-credits p {
+  margin: 0.5rem 0;
+}
+
+/* Space Debris */
+.space-debris {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.debris {
+  position: absolute;
+  font-size: 2rem;
+  animation: debrisFloat 15s linear infinite;
+}
+
+.debris-1 {
+  top: 10%;
+  left: -10%;
+  animation-delay: -2s;
+}
+
+.debris-2 {
+  top: 60%;
+  left: -10%;
+  animation-delay: -5s;
+}
+
+.debris-3 {
+  top: 30%;
+  left: -10%;
+  animation-delay: -8s;
+}
+
+.debris-4 {
+  top: 80%;
+  left: -10%;
+  animation-delay: -12s;
+}
+
+@keyframes debrisFloat {
+  0% {
+    transform: translateX(0vw) rotate(0deg);
+  }
+  100% {
+    transform: translateX(110vw) rotate(360deg);
+  }
+}
+
+/* Warning Messages */
+.warning-messages {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.warning-msg {
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff0000;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #ff0000;
+  animation: warningFlash 2s ease-in-out infinite;
+  text-shadow: 0 0 10px currentColor;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.warning-1 {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.warning-2 {
+  top: 15%;
+  right: 5%;
+  animation-delay: 1s;
+}
+
+.warning-3 {
+  bottom: 15%;
+  left: 5%;
+  animation-delay: 2s;
+}
+
+@keyframes warningFlash {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cover-title {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+  
+  .cover-subtitle {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+  
+  .cover-enter-btn {
+    font-size: 1.2rem;
+    padding: 1.2rem 2.5rem;
+  }
+  
+  .floating-ufo {
+    font-size: 3rem;
+  }
+  
+  .martian-head {
+    font-size: 2.5rem;
+  }
+  
+  .animated-planet.large {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .animated-planet.medium {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .animated-planet.small {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .warning-msg {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cover-content {
+    width: 95%;
+  }
+  
+  .cover-title {
+    font-size: clamp(1.8rem, 12vw, 3rem);
+  }
+  
+  .cover-subtitle {
+    font-size: clamp(0.9rem, 5vw, 1.2rem);
+    margin-bottom: 2rem;
+  }
+  
+  .cover-enter-btn {
+    font-size: 1rem;
+    padding: 1rem 2rem;
+  }
+  
+  .cover-credits {
+    font-size: 0.8rem;
+    bottom: 1rem;
+  }
+}
