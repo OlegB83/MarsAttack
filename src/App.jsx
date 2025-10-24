@@ -90,6 +90,63 @@ function FloatingShapes() {
   return <div ref={shapesRef} className="floating-shapes"></div>;
 }
 
+function TrickyCube() {
+  const cubeRef = useRef(null);
+  const [rotation, setRotation] = useState({ x: 20, y: 45 });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const animationRef = useRef(null);
+  
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const x = (e.clientY / window.innerHeight - 0.5) * 40;
+      const y = (e.clientX / window.innerWidth - 0.5) * 40;
+      setMousePos({ x, y });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    // Auto-rotate animation
+    let angle = 0;
+    const animate = () => {
+      angle += 0.5;
+      setRotation(prev => ({
+        x: prev.x + (mousePos.x - prev.x) * 0.05 + Math.sin(angle * 0.02) * 2,
+        y: prev.y + (mousePos.y - prev.y) * 0.05 + Math.cos(angle * 0.02) * 2
+      }));
+      animationRef.current = requestAnimationFrame(animate);
+    };
+    
+    animationRef.current = requestAnimationFrame(animate);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [mousePos.x, mousePos.y]);
+  
+  return (
+    <div className="tricky-cube-container">
+      <div 
+        ref={cubeRef}
+        className="cube-3d"
+        style={{
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
+        }}
+      >
+        <div className="cube-face front">👽</div>
+        <div className="cube-face back">🛸</div>
+        <div className="cube-face right">🚀</div>
+        <div className="cube-face left">⚡</div>
+        <div className="cube-face top">🌌</div>
+        <div className="cube-face bottom">🔴</div>
+      </div>
+      <div className="cube-shadow"></div>
+    </div>
+  );
+}
+
 /**
  * @typedef {Object} Translation
  * @property {string} heroTitle
@@ -293,6 +350,7 @@ function App() {
     <>
       <ParticleSystem />
       <FloatingShapes />
+      <TrickyCube />
       <div className="morph-bg"></div>
       
       {/* Funny Popup Modal */}
