@@ -168,7 +168,7 @@ function ProjectCover({ onEnter }) {
         {showSubtitle && (
           <div className="cover-subtitle">
             <TypewriterText 
-              text="THE ULTIMATE INTERGALACTIC INVASION SIMULATOR"
+              text="THE ULTIMATE INTERGALACTIC INVASION"
               speed={80}
               delay={0}
             />
